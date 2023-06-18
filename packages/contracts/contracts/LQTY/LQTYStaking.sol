@@ -91,8 +91,8 @@ contract LQTYStaking is ILQTYStaking, Ownable, CheckContract, BaseMath {
     }
 
     // If caller has a pre-existing stake, send any accumulated ETH and LUSD gains to them. 
-    function stake(uint _LQTYamount) external override {
-        _requireNonZeroAmount(_LQTYamount);
+    function stake(uint _RequestedAmount) external override {
+        _requireNonZeroAmount(_RequestedAmount);
 
         uint currentStake = stakes[msg.sender];
 
@@ -106,15 +106,23 @@ contract LQTYStaking is ILQTYStaking, Ownable, CheckContract, BaseMath {
     
        _updateUserSnapshots(msg.sender);
 
-        uint newStake = currentStake.add(_LQTYamount);
+        uint256 prevContractBalance = lqtyToken.balanceOf(address(this));
+        // Transfer LQTY from caller to this contract
+        lqtyToken.transferFrom(msg.sender, address(this), _RequestedAmount);
+        uint256 newContractBalance = lqtyToken.balanceOf(address(this));
+
+        require(newContractBalance > prevContractBalance, "Negative change");
+
+        // Get actual change from change in total balance
+        uint256 actualStakedAmount = newContractBalance - prevContractBalance;
+
+        uint newStake = currentStake.add(actualStakedAmount);
+        
 
         // Increase user’s stake and total LQTY staked
         stakes[msg.sender] = newStake;
-        totalLQTYStaked = totalLQTYStaked.add(_LQTYamount);
+        totalLQTYStaked = totalLQTYStaked.add(actualStakedAmount);
         emit TotalLQTYStakedUpdated(totalLQTYStaked);
-
-        // Transfer LQTY from caller to this contract
-        lqtyToken.transferFrom(msg.sender, address(this), _LQTYamount);
 
         emit StakeChanged(msg.sender, newStake);
         emit StakingGainsWithdrawn(msg.sender, LUSDGain, ETHGain);
