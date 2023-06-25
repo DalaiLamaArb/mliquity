@@ -161,6 +161,8 @@ contract StabilityPool is LiquityBase, Ownable, CheckContract, IStabilityPool {
 
     ICommunityIssuance public communityIssuance;
 
+    address public communityIssuanceManager;
+
     uint256 internal ETH;  // deposited ether tracker
 
     // Tracker for LUSD held in the pool. Changes when users deposit/withdraw, and when Trove debt is offset.
@@ -298,6 +300,8 @@ contract StabilityPool is LiquityBase, Ownable, CheckContract, IStabilityPool {
         priceFeed = IPriceFeed(_priceFeedAddress);
         communityIssuance = ICommunityIssuance(_communityIssuanceAddress);
 
+        communityIssuanceManager = owner();
+
         emit BorrowerOperationsAddressChanged(_borrowerOperationsAddress);
         emit TroveManagerAddressChanged(_troveManagerAddress);
         emit ActivePoolAddressChanged(_activePoolAddress);
@@ -308,6 +312,18 @@ contract StabilityPool is LiquityBase, Ownable, CheckContract, IStabilityPool {
 
         _renounceOwnership();
     }
+
+    function setCommunityIssuance(address _communityIssuance) external {
+        require(msg.sender == communityIssuanceManager, "SP: caller is not CI manager");
+        communityIssuance = ICommunityIssuance(_communityIssuance);
+        emit CommunityIssuanceAddressChanged(_communityIssuance);
+    }
+
+    function setCommunityIssuanceManager(address _manager) external {
+        require(msg.sender == communityIssuanceManager, "SP: caller is not CI manager");
+        communityIssuanceManager = _manager;
+    }
+
 
     // --- Getters for public variables. Required by IPool interface ---
 

@@ -79,7 +79,6 @@ contract CommunityIssuance is ICommunityIssuance, Ownable, CheckContract, BaseMa
 
         // When LQTYToken deployed, it should have transferred CommunityIssuance's LQTY entitlement
         LQTYSupplyCap = lqtyToken.balanceOf(address(this));
-        // assert(LQTYBalance >= LQTYSupplyCap);
 
         emit LQTYTokenAddressSet(_lqtyTokenAddress);
         emit StabilityPoolAddressSet(_stabilityPoolAddress);
@@ -97,6 +96,15 @@ contract CommunityIssuance is ICommunityIssuance, Ownable, CheckContract, BaseMa
         emit TotalLQTYIssuedUpdated(latestTotalLQTYIssued);
         
         return issuance;
+    }
+
+    function increaseReward(uint256 amount) external {
+        uint256 prevContractBalance = lqtyToken.balanceOf(address(this));
+        lqtyToken.transferFrom(msg.sender, address(this), amount);
+        uint256 newContractBalance = lqtyToken.balanceOf(address(this));
+        require(newContractBalance > prevContractBalance, "Negative change");
+        uint256 addedAmount = newContractBalance - prevContractBalance;
+        LQTYSupplyCap = LQTYSupplyCap + addedAmount;
     }
 
     /* Gets 1-f^t    where: f < 1
