@@ -3,7 +3,7 @@
   "version": "816039242c2bdeac838e3dd1ad3df5d27395813e",
   "deploymentDate": 1000,
   "bootstrapPeriod": 1209600,
-  "totalStabilityPoolLQTYReward": "95",
+  "totalStabilityPoolLQTYReward": "8597.5",
   "liquidityMiningLQTYRewardRate": "1000000",
   "_priceFeedIsTestnet": false,
   "_uniTokenIsMock": false,
