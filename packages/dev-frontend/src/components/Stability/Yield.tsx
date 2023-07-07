@@ -53,7 +53,7 @@ export const Yield: React.FC = () => {
               liquidations.
             </Paragraph>
             <Paragraph sx={{ fontSize: "12px", fontFamily: "monospace", mt: 2 }}>
-              ($LQTY_REWARDS * DAILY_ISSUANCE% / DEPOSITED_LUSD) * 365 * 100 ={" "}
+              ($MONSTA_REWARDS * DAILY_ISSUANCE% / DEPOSITED_MUSD) * 365 * 100 ={" "}
               <Text sx={{ fontWeight: "bold" }}> APR</Text>
             </Paragraph>
             <Paragraph sx={{ fontSize: "12px", fontFamily: "monospace" }}>
