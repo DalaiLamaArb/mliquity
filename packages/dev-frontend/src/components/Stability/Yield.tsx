@@ -46,7 +46,7 @@ export const Yield: React.FC = () => {
       <Text>MONSTA APR {aprPercentage.toString(2)}%</Text>
       <InfoIcon
         tooltip={
-          <Card variant="tooltip" sx={{ width: ["220px", "518px"] }}>
+          <Card variant="tooltip" sx={{ width: "auto" }}>
             <Paragraph>
               An <Text sx={{ fontWeight: "bold" }}>estimate</Text> of the MONSTA return on the LUSD
               deposited to the Stability Pool over the next year, not including your BNB gains from
