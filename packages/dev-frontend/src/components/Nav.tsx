@@ -16,9 +16,9 @@ export const Nav: React.FC = () => {
     <Box as="nav" sx={{ display: ["none", "flex"], alignItems: "center", flex: 1 }}>
       <Flex>
         <Link to="/">Dashboard</Link>
-        <Link to="/bonds">
+        <Link to="https://app.cake.monster">
           <Flex sx={{ alignItems: "center" }}>
-            <Text>Bonds</Text>
+            <Text>Monsta App</Text>
             <TemporaryNewBadge />
           </Flex>
         </Link>
