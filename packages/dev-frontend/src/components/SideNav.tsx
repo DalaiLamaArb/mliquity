@@ -42,7 +42,7 @@ export const SideNav: React.FC = () => {
           </a>
           {/* Comment out "Bonds" */}
           {/* <Link to="/bonds">Bonds</Link> */}
-          <Link to="/risky-troves">Risky Troves</Link>
+        //  <Link to="/risky-troves">Risky Troves</Link>
         </Box>
       </Flex>
     </Container>
