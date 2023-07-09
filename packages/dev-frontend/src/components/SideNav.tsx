@@ -21,7 +21,7 @@ export const SideNav: React.FC = () => {
     <Container
       variant="infoOverlay"
       ref={overlay}
-      onClick={e => {
+      onClick={(e) => {
         if (e.target === overlay.current) {
           setIsVisible(false);
         }
@@ -37,8 +37,10 @@ export const SideNav: React.FC = () => {
         </Button>
         <LiquityLogo height={logoHeight} p={2} />
         <Box as="nav" sx={{ m: 3, mt: 1, p: 0 }} onClick={() => setIsVisible(false)}>
-          <Link to="/">Dashboard</Link>
-          <Link to="/bonds">Bonds</Link>
+          {/* Change "Dashboard" to "MONSTA DAPP" */}
+          <Link to="/">MONSTA DAPP</Link>
+          {/* Comment out "Bonds" */}
+          {/* <Link to="/bonds">Bonds</Link> */}
           <Link to="/risky-troves">Risky Troves</Link>
         </Box>
       </Flex>
