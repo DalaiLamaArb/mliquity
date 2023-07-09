@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+...import React, { useState } from "react";
 import { Heading, Box, Card, Button } from "theme-ui";
 
 import {
@@ -45,9 +45,10 @@ export const StabilityDepositEditor: React.FC<StabilityDepositEditorProps> = ({
   const maxAmount = originalDeposit.currentLUSD.add(lusdBalance);
   const maxedOut = editedLUSD.eq(maxAmount);
 
-  const lusdInStabilityPoolAfterChange = lusdInStabilityPool
-    .sub(originalDeposit.currentLUSD)
-    .add(editedLUSD);
+  const lusdInStabilityPoolAfterChange =
+    originalDeposit.currentLUSD.isGreaterThan(lusdInStabilityPool)
+      ? lusdInStabilityPool.sub(originalDeposit.currentLUSD).add(editedLUSD)
+      : editedLUSD;
 
   const originalPoolShare = originalDeposit.currentLUSD.mulDiv(100, lusdInStabilityPool);
   const newPoolShare = editedLUSD.mulDiv(100, lusdInStabilityPoolAfterChange);
@@ -106,7 +107,7 @@ export const StabilityDepositEditor: React.FC<StabilityDepositEditorProps> = ({
               unit="BNB"
             />
 
-            <StaticRow
+<StaticRow
               label="Reward"
               inputId="deposit-reward"
               amount={originalDeposit.lqtyReward.prettify()}
