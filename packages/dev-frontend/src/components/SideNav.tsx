@@ -37,8 +37,9 @@ export const SideNav: React.FC = () => {
         </Button>
         <LiquityLogo height={logoHeight} p={2} />
         <Box as="nav" sx={{ m: 3, mt: 1, p: 0 }} onClick={() => setIsVisible(false)}>
-          {/* Change "Dashboard" to "MONSTA DAPP" */}
-          <Link to="/">MONSTA DAPP</Link>
+          <a href="https://app.cake.monster" target="_blank" rel="noopener noreferrer">
+            MONSTA DAPP
+          </a>
           {/* Comment out "Bonds" */}
           {/* <Link to="/bonds">Bonds</Link> */}
           <Link to="/risky-troves">Risky Troves</Link>
