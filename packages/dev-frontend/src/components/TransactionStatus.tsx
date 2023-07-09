@@ -58,9 +58,13 @@ const TransactionProgressDonut: React.FC<TransactionProgressDonutProps> = ({ sta
       <Icon name="check" color="white" size="lg" />
     </Donut>
   ) : state === "failed" || state === "cancelled" ? (
+    // Commenting out the failed state display
+    /*
     <Donut value={0} {...{ maxValue, ...fastProgress }}>
       <Icon name="times" color="white" size="lg" />
     </Donut>
+    */
+    null // Return null instead
   ) : (
     <Donut {...{ value, maxValue, ...slowProgress }}>
       <Icon name="cog" color="white" size="lg" spin />
