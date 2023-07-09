@@ -34,13 +34,8 @@ export const Yield: React.FC = () => {
 
   if (hasZeroValue || lqtyPrice === undefined) return null;
 
-  const lqtyIssuanceOneDay = remainingStabilityPoolLQTYReward.mul(dailyIssuanceFraction);
-  const lqtyIssuanceOneDayInUSD = lqtyIssuanceOneDay.mul(lqtyPrice);
-  const aprPercentage = lqtyIssuanceOneDayInUSD.mulDiv(365 * 100, lusdInStabilityPool);
-  const remainingLqtyInUSD = remainingStabilityPoolLQTYReward.mul(lqtyPrice);
-
-  if (aprPercentage.isZero) return null;
-
+  // Commenting out the badge displaying the information
+  /*
   return (
     <Badge>
       <Text>MONSTA APR {aprPercentage.toString(2)}%</Text>
@@ -67,4 +62,8 @@ export const Yield: React.FC = () => {
       ></InfoIcon>
     </Badge>
   );
+  */
+  
+  // Return null instead
+  return null;
 };
