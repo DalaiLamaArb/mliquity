@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import { Box, Button, Container, Flex } from "theme-ui";
 import { Icon } from "./Icon";
 import { LiquityLogo } from "./LiquityLogo";
-import { Link } from "./Link";
 
 const logoHeight = "32px";
 
@@ -37,12 +36,9 @@ export const SideNav: React.FC = () => {
         </Button>
         <LiquityLogo height={logoHeight} p={2} />
         <Box as="nav" sx={{ m: 3, mt: 1, p: 0 }} onClick={() => setIsVisible(false)}>
-          <a href="https://app.cake.monster" target="_blank" rel="noopener noreferrer">
-            MONSTA DAPP
-          </a>
-          {/* Comment out "Bonds" */}
-          {/* <Link to="/bonds">Bonds</Link> */}
-        //  <Link to="/risky-troves">Risky Troves</Link>
+          <Link to="/">Dashboard</Link>
+          <a href="https://app.cake.monster">Monster App</a>
+          <Link to="/risky-troves">Risky Troves</Link>
         </Box>
       </Flex>
     </Container>
